@@ -50,6 +50,9 @@
 		BA1045C11BC0AD4900DC38EF /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1045B01BC0AD4900DC38EF /* UIImageView+WebCache.m */; };
 		BA1045C21BC0AD4900DC38EF /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1045B21BC0AD4900DC38EF /* UIView+WebCacheOperation.m */; };
 		BA1045C51BC0B52500DC38EF /* medicine.png in Resources */ = {isa = PBXBuildFile; fileRef = BA1045C41BC0B52500DC38EF /* medicine.png */; };
+		BA1045DF1BC1019200DC38EF /* ParseUI in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1045DE1BC1019200DC38EF /* ParseUI */; };
+		BA1045E71BC1185B00DC38EF /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1045E41BC1185B00DC38EF /* SSKeychain.m */; };
+		BA1045E81BC1185B00DC38EF /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1045E61BC1185B00DC38EF /* SSKeychainQuery.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +133,11 @@
 		BA1045B11BC0AD4900DC38EF /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		BA1045B21BC0AD4900DC38EF /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		BA1045C41BC0B52500DC38EF /* medicine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = medicine.png; sourceTree = "<group>"; };
+		BA1045DE1BC1019200DC38EF /* ParseUI */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = ParseUI; path = ParseUI.framework/ParseUI; sourceTree = "<group>"; };
+		BA1045E31BC1185B00DC38EF /* SSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychain.h; sourceTree = "<group>"; };
+		BA1045E41BC1185B00DC38EF /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
+		BA1045E51BC1185B00DC38EF /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
+		BA1045E61BC1185B00DC38EF /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +151,7 @@
 				BA10457F1BC09A5000DC38EF /* StoreKit.framework in Frameworks */,
 				BA10457D1BC09A4A00DC38EF /* Security.framework in Frameworks */,
 				BA10457B1BC09A4600DC38EF /* QuartzCore.framework in Frameworks */,
+				BA1045DF1BC1019200DC38EF /* ParseUI in Frameworks */,
 				BA1045791BC09A4000DC38EF /* CoreLocation.framework in Frameworks */,
 				BA1045771BC09A3A00DC38EF /* CoreGraphics.framework in Frameworks */,
 				BA1045751BC09A3400DC38EF /* CFNetwork.framework in Frameworks */,
@@ -243,6 +252,8 @@
 		BA1045611BC089DD00DC38EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BA1045E21BC1183F00DC38EF /* SSKeyChain */,
+				BA1045DE1BC1019200DC38EF /* ParseUI */,
 				BA1045641BC098AF00DC38EF /* Bolts.framework */,
 				BA1045651BC098AF00DC38EF /* Parse.framework */,
 				BA1045661BC098AF00DC38EF /* ParseCrashReporting.framework */,
@@ -310,6 +321,17 @@
 				BA1045C41BC0B52500DC38EF /* medicine.png */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		BA1045E21BC1183F00DC38EF /* SSKeyChain */ = {
+			isa = PBXGroup;
+			children = (
+				BA1045E31BC1185B00DC38EF /* SSKeychain.h */,
+				BA1045E41BC1185B00DC38EF /* SSKeychain.m */,
+				BA1045E51BC1185B00DC38EF /* SSKeychainQuery.h */,
+				BA1045E61BC1185B00DC38EF /* SSKeychainQuery.m */,
+			);
+			name = SSKeyChain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -416,6 +438,7 @@
 			files = (
 				BA1045C01BC0AD4900DC38EF /* UIImageView+HighlightedWebCache.m in Sources */,
 				BA1045BE1BC0AD4900DC38EF /* UIImage+MultiFormat.m in Sources */,
+				BA1045E71BC1185B00DC38EF /* SSKeychain.m in Sources */,
 				BA1045B91BC0AD4900DC38EF /* SDWebImageDownloaderOperation.m in Sources */,
 				BA10458D1BC0A19A00DC38EF /* TaskWithImageTableViewCell.m in Sources */,
 				BA1045B61BC0AD4900DC38EF /* SDWebImageCompat.m in Sources */,
@@ -425,6 +448,7 @@
 				BA1045411BC080CC00DC38EF /* AppDelegate.m in Sources */,
 				BA1045BF1BC0AD4900DC38EF /* UIImage+WebP.m in Sources */,
 				BA1045C11BC0AD4900DC38EF /* UIImageView+WebCache.m in Sources */,
+				BA1045E81BC1185B00DC38EF /* SSKeychainQuery.m in Sources */,
 				BA1045B81BC0AD4900DC38EF /* SDWebImageDownloader.m in Sources */,
 				BA1045C21BC0AD4900DC38EF /* UIView+WebCacheOperation.m in Sources */,
 				BA1045BC1BC0AD4900DC38EF /* UIButton+WebCache.m in Sources */,
@@ -565,6 +589,10 @@
 				);
 				INFOPLIST_FILE = iCare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/iCare/ParseUI.framework",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -579,6 +607,10 @@
 				);
 				INFOPLIST_FILE = iCare/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/iCare/ParseUI.framework",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

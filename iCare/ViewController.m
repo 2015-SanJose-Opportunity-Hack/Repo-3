@@ -10,24 +10,81 @@
 #import <Parse/Parse.h>
 #import "TaskWithImageTableViewCell.h"
 #import "UIImageView+WebCache.h"
+#import <ParseUI/ParseUI.h>
+#import "SSKeychain.h"
 
-@interface ViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface ViewController ()<UITableViewDataSource, UITableViewDelegate,PFLogInViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
 @property (strong, nonatomic) NSArray *tasks;
 @property (strong, nonatomic) NSMutableArray *incompleteTasks;
 @property (strong, nonatomic) NSString *status;
+@property(nonatomic, strong) PFLogInViewController *logInController;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
+    NSString *appName=[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey];
+    NSString *code = [SSKeychain passwordForService:appName account:@"icare"];
+    NSLog(@"code %@",code);
+
     [super viewDidLoad];
+    if ([PFUser currentUser] == nil) {
+        self.logInController = [[PFLogInViewController alloc] init];
+        self.logInController.delegate = self;
+        self.logInController.fields = (PFLogInFieldsUsernameAndPassword
+                                       | PFLogInFieldsLogInButton
+                                       | PFLogInFieldsSignUpButton
+                                       | PFLogInFieldsPasswordForgotten
+                                       | PFLogInFieldsDismissButton);
+        [self presentViewController:self.logInController animated:NO completion:nil];
+    }else{
+        self.taskTableView.dataSource = self;
+        self.taskTableView.delegate = self;
+        
+        [self fetchIncompleteTasks];
+    }
+//    [self.taskTableView registerClass:[TaskWithImageTableViewCell class] forCellReuseIdentifier:@"taskImageCellIdentifier"];
+}
+
+- (NSMutableString *) randomStringWithLength:(int) len {
+    
+    NSString *letters  = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    
+    NSMutableString *randomString  = [[NSMutableString alloc]initWithCapacity:len];
+    
+    for (int i=0; i < len; i++){
+        NSUInteger rand = arc4random_uniform(letters.length);
+        randomString = [randomString stringByAppendingFormat:@"%C", [letters characterAtIndex:rand]];
+    }
+    return randomString;
+}
+
+
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
+    NSLog(@"didLogInUser %@",user);
+
+//    NSString *random = [self randomStringWithLength:5];
+//    NSLog(@"random string %@",random);
+//    NSString *appName=[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey];
+//    [SSKeychain setPassword:random forService:appName account:@"icare"];
+//
+//    NSString *codeString = [NSString stringWithFormat:@"%@:%@",@"Share this code with your loved one whom you care for",random];
+//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Code" message:codeString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//    [alert show];
+    
+    [self.logInController dismissViewControllerAnimated:NO completion:nil];
     self.taskTableView.dataSource = self;
     self.taskTableView.delegate = self;
     
     [self fetchIncompleteTasks];
-//    [self.taskTableView registerClass:[TaskWithImageTableViewCell class] forCellReuseIdentifier:@"taskImageCellIdentifier"];
+
+}
+
+- (void)logInViewController:(PFLogInViewController *)logInController
+    didFailToLogInWithError:(PFUI_NULLABLE NSError *)error{
+    NSLog(@"didFailToLogInWithError %@",error);
 }
 
 - (void)fetchIncompleteTasks{
