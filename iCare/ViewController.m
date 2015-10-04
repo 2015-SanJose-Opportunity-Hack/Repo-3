@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
 @property (strong, nonatomic) NSArray *tasks;
+@property (strong, nonatomic) NSMutableArray *incompleteTasks;
 @property (strong, nonatomic) NSString *status;
 @end
 
@@ -25,13 +26,23 @@
     self.taskTableView.dataSource = self;
     self.taskTableView.delegate = self;
     
+    [self fetchIncompleteTasks];
 //    [self.taskTableView registerClass:[TaskWithImageTableViewCell class] forCellReuseIdentifier:@"taskImageCellIdentifier"];
-    
+}
+
+- (void)fetchIncompleteTasks{
+    self.tasks = nil;
     self.tasks = [[NSArray alloc]init];
-    
     PFQuery *query = [PFQuery queryWithClassName:@"task"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
-
+        self.incompleteTasks = [[NSMutableArray alloc]init];
+        
+        [objects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            PFObject *task = (PFObject *)objects[idx];
+            if ([task[@"status"] isEqual:@"incomplete"]) {
+                [self.incompleteTasks addObject:task];
+            }
+        }];
         PFObject *obj = (PFObject *)objects[0];
         PFFile *file = (PFFile *)obj[@"resource"];
         NSLog(@"objects %@",file.url);
@@ -41,7 +52,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.tasks.count;
+    return self.incompleteTasks.count;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -57,13 +68,13 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"TaskWithImageTableViewCell" owner:nil options:nil] objectAtIndex: 0];
     }
 
-    PFObject *object = [self.tasks objectAtIndex:indexPath.row];
+    PFObject *object = [self.incompleteTasks objectAtIndex:indexPath.row];
     cell.taskLabel.text = object[@"description"];
-    if ([object[@"status"] isEqual:@"complete"]) {
-        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-    }else{
-        [cell setAccessoryType:UITableViewCellAccessoryNone];
-    }
+//    if ([object[@"status"] isEqual:@"complete"]) {
+//        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+//    }else{
+//        [cell setAccessoryType:UITableViewCellAccessoryNone];
+//    }
     PFFile *file = (PFFile *)object[@"resource"];
     [cell.taskImage sd_setImageWithURL:[NSURL URLWithString:file.url] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
@@ -85,15 +96,25 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    PFObject *task = [self.tasks objectAtIndex:indexPath.row];
+    PFObject *task = [self.incompleteTasks objectAtIndex:indexPath.row];
     if (task[@"status"] == nil || [task[@"status"] isEqual:@"incomplete"]) {
         task[@"status"] = @"complete";
-    }else if([task[@"status"] isEqual:@"complete"]){
-        task[@"status"] = @"incomplete";
     }
+
+    
+//    else if([task[@"status"] isEqual:@"complete"]){
+//        task[@"status"] = @"incomplete";
+//    }
+//    [task saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
+//        if (succeeded) {
+//            [tableView reloadRowsAtIndexPaths:[tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationFade];
+//        }
+//    }];
+
     [task saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (succeeded) {
-            [tableView reloadRowsAtIndexPaths:[tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationFade];
+            [self fetchIncompleteTasks];
+//            [tableView reloadRowsAtIndexPaths:[tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationFade];
         }
     }];
 

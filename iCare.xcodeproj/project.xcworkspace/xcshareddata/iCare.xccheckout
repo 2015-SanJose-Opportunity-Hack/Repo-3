@@ -5,26 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-<<<<<<< HEAD
 	<string>ABBAB30B-3CF9-46E0-AEF5-AF264C344819</string>
 	<key>IDESourceControlProjectName</key>
 	<string>project</string>
-=======
-	<string>C7B21BA8-3CA1-4C92-8E5B-7A1719B0EE51</string>
-	<key>IDESourceControlProjectName</key>
-	<string>iCare</string>
->>>>>>> 0896642239446d13aea7cc855b304bdc1debe8a5
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>5069A69E2DA74DE2D65DF8446079D9B7839A9713</key>
 		<string>https://github.com/Opportunity-Hack-2015-SanJose/Repo-3</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-<<<<<<< HEAD
 	<string>iCare.xcodeproj/project.xcworkspace</string>
-=======
-	<string>iCare.xcodeproj</string>
->>>>>>> 0896642239446d13aea7cc855b304bdc1debe8a5
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>5069A69E2DA74DE2D65DF8446079D9B7839A9713</key>
@@ -44,11 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>5069A69E2DA74DE2D65DF8446079D9B7839A9713</string>
 			<key>IDESourceControlWCCName</key>
-<<<<<<< HEAD
 			<string>iCare</string>
-=======
-			<string>Repo-3</string>
->>>>>>> 0896642239446d13aea7cc855b304bdc1debe8a5
 		</dict>
 	</array>
 </dict>
