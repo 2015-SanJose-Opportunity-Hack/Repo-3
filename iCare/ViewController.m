@@ -13,6 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
 @property (strong, nonatomic) NSArray *tasks;
+@property (strong, nonatomic) NSString *status;
 @end
 
 @implementation ViewController
@@ -26,8 +27,12 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"task"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
-        self.tasks = objects;
-        [self.taskTableView reloadData];
+        self.status = [objects valueForKey:@"status"];
+        if (!error && ([self.status isEqual:(@"completed")])) {
+            self.tasks = objects;
+            [self.taskTableView reloadData];
+        }
+        
     }];
 }
 
