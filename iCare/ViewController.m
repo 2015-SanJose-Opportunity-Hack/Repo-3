@@ -13,7 +13,7 @@
 #import <ParseUI/ParseUI.h>
 #import "SSKeychain.h"
 
-@interface ViewController ()<UITableViewDataSource, UITableViewDelegate,PFLogInViewControllerDelegate, UIAlertViewDelegate>
+@interface ViewController ()<UITableViewDataSource, UITableViewDelegate,PFLogInViewControllerDelegate, UIAlertViewDelegate, UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
 @property (strong, nonatomic) NSArray *tasks;
@@ -23,6 +23,49 @@
 @end
 
 @implementation ViewController
+- (IBAction)call911:(id)sender {
+    NSString *phNo = @"911";
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"tel:%@",phNo]];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+        [[UIApplication sharedApplication] openURL:phoneUrl];
+    }
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString *phNo;
+    switch (buttonIndex) {
+        case 0:
+            phNo = @"911";
+            break;
+        case 1:
+            phNo = @"211";
+            break;
+        case 2:
+            phNo = @"6693009396";
+            break;
+        case 3:
+            break;
+        default:
+            break;
+    }
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString  stringWithFormat:@"tel:%@",phNo]];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+        [[UIApplication sharedApplication] openURL:phoneUrl];
+    }
+
+}
+
+- (IBAction)callActionSheet:(id)sender {
+    UIActionSheet *sheet = [[UIActionSheet alloc]init];
+    [sheet addButtonWithTitle:@"911"];
+    [sheet addButtonWithTitle:@"211"];
+    [sheet addButtonWithTitle:@"Jason"];
+    sheet.cancelButtonIndex = [sheet addButtonWithTitle:@"Cancel"];
+    sheet.delegate = self;
+    [sheet showInView:self.view];
+}
 
 - (void)viewDidLoad {
 
@@ -47,11 +90,16 @@
 - (NSMutableString *) randomStringWithLength:(int) len {
     
     NSString *letters  = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    
+    NSString *onlyLetters  = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     NSMutableString *randomString  = [[NSMutableString alloc]initWithCapacity:len];
     
     for (int i=0; i < len; i++){
-        NSUInteger rand = arc4random_uniform(letters.length);
+        NSUInteger rand;
+        if (i == 0) {
+            rand = arc4random_uniform(onlyLetters.length);
+        }else{
+            rand = arc4random_uniform(letters.length);
+        }
         randomString = [randomString stringByAppendingFormat:@"%C", [letters characterAtIndex:rand]];
     }
     return randomString;
@@ -82,6 +130,9 @@
     self.tasks = nil;
     self.tasks = [[NSArray alloc]init];
     PFQuery *query = [PFQuery queryWithClassName:@"task"];
+
+    //cancel all local notifications before scheduling new ones
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
     NSString *appName=[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey];
     

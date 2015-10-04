@@ -52,6 +52,7 @@
 		BA1045DF1BC1019200DC38EF /* ParseUI in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1045DE1BC1019200DC38EF /* ParseUI */; };
 		BA1045E71BC1185B00DC38EF /* SSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1045E41BC1185B00DC38EF /* SSKeychain.m */; };
 		BA1045E81BC1185B00DC38EF /* SSKeychainQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = BA1045E61BC1185B00DC38EF /* SSKeychainQuery.m */; };
+		BA1046981BC1BCAB00DC38EF /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = BA1046971BC1BCAB00DC38EF /* phone.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +137,7 @@
 		BA1045E41BC1185B00DC38EF /* SSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychain.m; sourceTree = "<group>"; };
 		BA1045E51BC1185B00DC38EF /* SSKeychainQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSKeychainQuery.h; sourceTree = "<group>"; };
 		BA1045E61BC1185B00DC38EF /* SSKeychainQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSKeychainQuery.m; sourceTree = "<group>"; };
+		BA1046971BC1BCAB00DC38EF /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				BA1045C41BC0B52500DC38EF /* medicine.png */,
+				BA1046971BC1BCAB00DC38EF /* phone.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 			files = (
 				BA10458E1BC0A19A00DC38EF /* TaskWithImageTableViewCell.xib in Resources */,
 				BA1045471BC080CC00DC38EF /* Main.storyboard in Resources */,
+				BA1046981BC1BCAB00DC38EF /* phone.png in Resources */,
 				BA1045C51BC0B52500DC38EF /* medicine.png in Resources */,
 				BA10454C1BC080CC00DC38EF /* LaunchScreen.xib in Resources */,
 				BA1045491BC080CC00DC38EF /* Images.xcassets in Resources */,
