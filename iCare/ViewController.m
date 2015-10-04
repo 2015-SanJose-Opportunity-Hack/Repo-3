@@ -13,7 +13,7 @@
 #import <ParseUI/ParseUI.h>
 #import "SSKeychain.h"
 
-@interface ViewController ()<UITableViewDataSource, UITableViewDelegate,PFLogInViewControllerDelegate>
+@interface ViewController ()<UITableViewDataSource, UITableViewDelegate,PFLogInViewControllerDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
 @property (strong, nonatomic) NSArray *tasks;
@@ -25,9 +25,6 @@
 @implementation ViewController
 
 - (void)viewDidLoad {
-    NSString *appName=[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey];
-    NSString *code = [SSKeychain passwordForService:appName account:@"icare"];
-    NSLog(@"code %@",code);
 
     [super viewDidLoad];
     if ([PFUser currentUser] == nil) {
@@ -45,7 +42,6 @@
         
         [self fetchIncompleteTasks];
     }
-//    [self.taskTableView registerClass:[TaskWithImageTableViewCell class] forCellReuseIdentifier:@"taskImageCellIdentifier"];
 }
 
 - (NSMutableString *) randomStringWithLength:(int) len {
@@ -65,21 +61,16 @@
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user{
     NSLog(@"didLogInUser %@",user);
 
-//    NSString *random = [self randomStringWithLength:5];
-//    NSLog(@"random string %@",random);
-//    NSString *appName=[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey];
-//    [SSKeychain setPassword:random forService:appName account:@"icare"];
-//
-//    NSString *codeString = [NSString stringWithFormat:@"%@:%@",@"Share this code with your loved one whom you care for",random];
-//    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Code" message:codeString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//    [alert show];
-    
     [self.logInController dismissViewControllerAnimated:NO completion:nil];
-    self.taskTableView.dataSource = self;
-    self.taskTableView.delegate = self;
     
-    [self fetchIncompleteTasks];
-
+    NSString *random = [self randomStringWithLength:5];
+    NSLog(@"random string %@",random);
+    NSString *appName=[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey];
+    [SSKeychain setPassword:random forService:appName account:@"icare"];
+    
+    NSString *codeString = [NSString stringWithFormat:@"%@:%@",@"Share this code with your family:",random];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Code" message:codeString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)logInViewController:(PFLogInViewController *)logInController
@@ -91,6 +82,11 @@
     self.tasks = nil;
     self.tasks = [[NSArray alloc]init];
     PFQuery *query = [PFQuery queryWithClassName:@"task"];
+    
+    NSString *appName=[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey];
+    
+    [query whereKey:@"uniqueCode" equalTo:[SSKeychain passwordForService:appName account:@"icare"]];
+    [query orderByAscending:@"t_date"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
         self.incompleteTasks = [[NSMutableArray alloc]init];
         
@@ -98,6 +94,7 @@
             PFObject *task = (PFObject *)objects[idx];
             if ([task[@"status"] isEqual:@"incomplete"]) {
                 [self.incompleteTasks addObject:task];
+                [self scheduleLocalNotification:task[@"t_date"] andBody:task[@"description"]];
             }
         }];
         PFObject *obj = (PFObject *)objects[0];
@@ -127,21 +124,25 @@
 
     PFObject *object = [self.incompleteTasks objectAtIndex:indexPath.row];
     cell.taskLabel.text = object[@"description"];
-//    if ([object[@"status"] isEqual:@"complete"]) {
-//        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-//    }else{
-//        [cell setAccessoryType:UITableViewCellAccessoryNone];
-//    }
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateStyle:NSDateFormatterShortStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    NSString *formattedDate = [formatter stringFromDate:object[@"t_date"]];
+    cell.timeLabel.text = formattedDate;
     PFFile *file = (PFFile *)object[@"resource"];
+    
     [cell.taskImage sd_setImageWithURL:[NSURL URLWithString:file.url] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         
     }];
-    
+    if (cell.taskImage.image == nil) {
+        cell.taskImage.image = [UIImage imageNamed:@"medicine"];
+    }
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
+    return 70;
 }
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
@@ -158,24 +159,21 @@
         task[@"status"] = @"complete";
     }
 
-    
-//    else if([task[@"status"] isEqual:@"complete"]){
-//        task[@"status"] = @"incomplete";
-//    }
-//    [task saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
-//        if (succeeded) {
-//            [tableView reloadRowsAtIndexPaths:[tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationFade];
-//        }
-//    }];
-
     [task saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error){
         if (succeeded) {
             [self fetchIncompleteTasks];
-//            [tableView reloadRowsAtIndexPaths:[tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationFade];
         }
     }];
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)scheduleLocalNotification:(NSDate *)date andBody:(NSString *)body{
+    UILocalNotification *notification = [[UILocalNotification alloc]init];
+    [notification setFireDate:date];
+    [notification setAlertBody:body];
+    [notification setSoundName:UILocalNotificationDefaultSoundName];
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
 - (void)didReceiveMemoryWarning {

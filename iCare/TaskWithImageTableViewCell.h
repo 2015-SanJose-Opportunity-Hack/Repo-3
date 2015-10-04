@@ -12,4 +12,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *taskImage;
 
 @property (weak, nonatomic) IBOutlet UILabel *taskLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @end

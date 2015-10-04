@@ -7,22 +7,22 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskImageCellIdentifier" rowHeight="60" id="KGk-i7-Jjw" customClass="TaskWithImageTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskImageCellIdentifier" rowHeight="76" id="KGk-i7-Jjw" customClass="TaskWithImageTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hW2-89-Krv">
-                        <rect key="frame" x="18" y="10" width="40" height="40"/>
+                        <rect key="frame" x="8" y="13" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="90" id="13W-ed-xVg"/>
-                            <constraint firstAttribute="width" constant="40" id="OLt-Qh-jtr"/>
+                            <constraint firstAttribute="width" constant="50" id="OLt-Qh-jtr"/>
                             <constraint firstAttribute="width" constant="100" id="g8E-NF-UJV"/>
                             <constraint firstAttribute="width" constant="100" id="gSo-3Y-HoV"/>
                             <constraint firstAttribute="height" constant="90" id="mmc-k9-98d"/>
-                            <constraint firstAttribute="height" constant="40" id="wov-pP-rFj"/>
+                            <constraint firstAttribute="height" constant="50" id="wov-pP-rFj"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -51,6 +51,12 @@
                             </mask>
                         </variation>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qa2-Of-kEj">
+                        <rect key="frame" x="76" y="42" width="143" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="q58-YE-GnB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-23" id="05w-p9-8Xy"/>
@@ -61,23 +67,27 @@
                     <constraint firstItem="q58-YE-GnB" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Fmb-Wa-9T2"/>
                     <constraint firstAttribute="bottomMargin" secondItem="q58-YE-GnB" secondAttribute="bottom" constant="-24" id="GrN-1E-Y8a"/>
                     <constraint firstAttribute="bottomMargin" secondItem="q58-YE-GnB" secondAttribute="bottom" constant="4" id="JlV-d9-OX3"/>
-                    <constraint firstItem="hW2-89-Krv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="Moh-uz-E0e"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Qa2-Of-kEj" secondAttribute="trailing" constant="93" id="Jvc-xP-1vc"/>
+                    <constraint firstItem="hW2-89-Krv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="Moh-uz-E0e"/>
                     <constraint firstItem="hW2-89-Krv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Nsp-st-gbF"/>
                     <constraint firstItem="q58-YE-GnB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="OSA-nd-m39"/>
                     <constraint firstAttribute="centerX" secondItem="hW2-89-Krv" secondAttribute="centerX" constant="110" id="PAI-RF-fFy"/>
                     <constraint firstItem="hW2-89-Krv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="PUs-H0-qpJ"/>
-                    <constraint firstItem="q58-YE-GnB" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="UDO-bU-N18"/>
+                    <constraint firstItem="q58-YE-GnB" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="-16" id="UDO-bU-N18"/>
                     <constraint firstItem="q58-YE-GnB" firstAttribute="leading" secondItem="hW2-89-Krv" secondAttribute="trailing" constant="8" id="UU2-b0-Kuq"/>
                     <constraint firstAttribute="bottomMargin" secondItem="q58-YE-GnB" secondAttribute="bottom" constant="4" id="V9x-CA-Gu9"/>
                     <constraint firstAttribute="bottomMargin" secondItem="hW2-89-Krv" secondAttribute="bottom" constant="4" id="Vhc-Nv-JX5"/>
                     <constraint firstItem="q58-YE-GnB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="VmW-br-4kz"/>
+                    <constraint firstItem="Qa2-Of-kEj" firstAttribute="top" secondItem="q58-YE-GnB" secondAttribute="bottom" constant="-9" id="a0r-RL-N0p"/>
                     <constraint firstItem="q58-YE-GnB" firstAttribute="leading" secondItem="hW2-89-Krv" secondAttribute="trailing" constant="18" id="bS4-Kv-ach"/>
                     <constraint firstItem="q58-YE-GnB" firstAttribute="leading" secondItem="hW2-89-Krv" secondAttribute="trailing" constant="8" id="dCL-Jw-p2K"/>
                     <constraint firstItem="q58-YE-GnB" firstAttribute="leading" secondItem="hW2-89-Krv" secondAttribute="trailing" constant="24" id="hpp-cD-i6b"/>
-                    <constraint firstItem="hW2-89-Krv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="i1w-Nh-W8X"/>
+                    <constraint firstItem="hW2-89-Krv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="i1w-Nh-W8X"/>
                     <constraint firstItem="hW2-89-Krv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="iee-KJ-v9U"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Qa2-Of-kEj" secondAttribute="bottom" constant="4" id="nSz-B4-hKv"/>
                     <constraint firstItem="q58-YE-GnB" firstAttribute="leading" secondItem="hW2-89-Krv" secondAttribute="trailing" constant="24" id="nfh-zD-XGK"/>
                     <constraint firstItem="q58-YE-GnB" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="rLx-jt-2Sc"/>
+                    <constraint firstItem="Qa2-Of-kEj" firstAttribute="leading" secondItem="hW2-89-Krv" secondAttribute="trailing" constant="18" id="sAl-Ub-KaU"/>
                     <constraint firstItem="q58-YE-GnB" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-5" id="vk8-QY-bqH"/>
                     <constraint firstItem="q58-YE-GnB" firstAttribute="leading" secondItem="hW2-89-Krv" secondAttribute="trailing" constant="8" id="wcN-Gc-ojA"/>
                     <constraint firstAttribute="bottomMargin" secondItem="q58-YE-GnB" secondAttribute="bottom" constant="4" id="xSU-gZ-Ltv"/>
@@ -120,8 +130,9 @@
             <connections>
                 <outlet property="taskImage" destination="hW2-89-Krv" id="DMJ-5E-Zg7"/>
                 <outlet property="taskLabel" destination="q58-YE-GnB" id="D4J-tm-Yau"/>
+                <outlet property="timeLabel" destination="Qa2-Of-kEj" id="zz4-Wb-UT3"/>
             </connections>
-            <point key="canvasLocation" x="346.5" y="268"/>
+            <point key="canvasLocation" x="346" y="276"/>
         </tableViewCell>
     </objects>
 </document>

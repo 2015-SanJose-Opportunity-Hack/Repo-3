@@ -27,7 +27,6 @@
 		BA1045791BC09A4000DC38EF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1045781BC09A4000DC38EF /* CoreLocation.framework */; };
 		BA10457B1BC09A4600DC38EF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA10457A1BC09A4600DC38EF /* QuartzCore.framework */; };
 		BA10457D1BC09A4A00DC38EF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA10457C1BC09A4A00DC38EF /* Security.framework */; };
-		BA10457F1BC09A5000DC38EF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA10457E1BC09A5000DC38EF /* StoreKit.framework */; };
 		BA1045811BC09A5600DC38EF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1045801BC09A5600DC38EF /* SystemConfiguration.framework */; };
 		BA1045831BC09A5F00DC38EF /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1045821BC09A5F00DC38EF /* libz.dylib */; };
 		BA1045851BC09A6800DC38EF /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1045841BC09A6800DC38EF /* libsqlite3.dylib */; };
@@ -92,7 +91,6 @@
 		BA1045781BC09A4000DC38EF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		BA10457A1BC09A4600DC38EF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BA10457C1BC09A4A00DC38EF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		BA10457E1BC09A5000DC38EF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		BA1045801BC09A5600DC38EF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		BA1045821BC09A5F00DC38EF /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		BA1045841BC09A6800DC38EF /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -148,7 +146,6 @@
 				BA1045851BC09A6800DC38EF /* libsqlite3.dylib in Frameworks */,
 				BA1045831BC09A5F00DC38EF /* libz.dylib in Frameworks */,
 				BA1045811BC09A5600DC38EF /* SystemConfiguration.framework in Frameworks */,
-				BA10457F1BC09A5000DC38EF /* StoreKit.framework in Frameworks */,
 				BA10457D1BC09A4A00DC38EF /* Security.framework in Frameworks */,
 				BA10457B1BC09A4600DC38EF /* QuartzCore.framework in Frameworks */,
 				BA1045DF1BC1019200DC38EF /* ParseUI in Frameworks */,
@@ -182,7 +179,6 @@
 				BA1045841BC09A6800DC38EF /* libsqlite3.dylib */,
 				BA1045821BC09A5F00DC38EF /* libz.dylib */,
 				BA1045801BC09A5600DC38EF /* SystemConfiguration.framework */,
-				BA10457E1BC09A5000DC38EF /* StoreKit.framework */,
 				BA10457C1BC09A4A00DC38EF /* Security.framework */,
 				BA10457A1BC09A4600DC38EF /* QuartzCore.framework */,
 				BA1045781BC09A4000DC38EF /* CoreLocation.framework */,
@@ -383,9 +379,16 @@
 				TargetAttributes = {
 					BA1045371BC080CC00DC38EF = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = RETVA9949K;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					BA1045501BC080CD00DC38EF = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = RETVA9949K;
 						TestTargetID = BA1045371BC080CC00DC38EF;
 					};
 				};
@@ -516,7 +519,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Akshay Mhatre (VJQ3KDTAFR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Akshay Mhatre (VJQ3KDTAFR)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -538,6 +542,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "9b588549-ddf3-49d0-8c75-dd4774a75082";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -559,7 +564,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Akshay Mhatre (VJQ3KDTAFR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Akshay Mhatre (VJQ3KDTAFR)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -574,6 +580,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "9b588549-ddf3-49d0-8c75-dd4774a75082";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -583,6 +590,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Akshay Mhatre (VJQ3KDTAFR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Akshay Mhatre (VJQ3KDTAFR)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iCare",
@@ -594,6 +603,7 @@
 					"$(PROJECT_DIR)/iCare/ParseUI.framework",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9b588549-ddf3-49d0-8c75-dd4774a75082";
 			};
 			name = Debug;
 		};
@@ -601,6 +611,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Akshay Mhatre (VJQ3KDTAFR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Akshay Mhatre (VJQ3KDTAFR)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/iCare",
@@ -612,6 +624,7 @@
 					"$(PROJECT_DIR)/iCare/ParseUI.framework",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9b588549-ddf3-49d0-8c75-dd4774a75082";
 			};
 			name = Release;
 		};
@@ -619,6 +632,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -630,6 +645,7 @@
 				INFOPLIST_FILE = iCareTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iCare.app/iCare";
 			};
 			name = Debug;
@@ -638,6 +654,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -645,6 +663,7 @@
 				INFOPLIST_FILE = iCareTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iCare.app/iCare";
 			};
 			name = Release;
