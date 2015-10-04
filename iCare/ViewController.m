@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *taskTableView;
 @property (strong, nonatomic) NSArray *tasks;
+@property (strong, nonatomic) NSString *status;
 @end
 
 @implementation ViewController
@@ -30,6 +31,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"task"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+
         PFObject *obj = (PFObject *)objects[0];
         PFFile *file = (PFFile *)obj[@"resource"];
         NSLog(@"objects %@",file.url);
